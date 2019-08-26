@@ -1,64 +1,49 @@
-import random
-
 print("""
       =============================================="
       |                                            |
-      |                                            |
+      |                SELCUK DAL                  |
       |             SAYI TAHMIN OYUNU              |
       |                  V 2.3                     |
       |               HOSGELDINIZ                  |
       |                                            |
-      ==============================================\n\n""")
+      ==============================================""")
 
-sayi_listesi = list(range(101))
+print("""
+OYUN YONERGESI
 
-tahmin = input(""" 
-Aklinizdan 1-100 arasinda bir sayi tutunuz !" Tahmin etmeye calisacagiz..
+Sayi tahmin oyunumuza hos geldiniz. 
+Lutfen aklinizdan 1 - 100 arasi bir sayi tutunuz.
+Programimiz aklinizda tuttugunuz sayiyi bulmaya calisacaktir.
+Programimizin yaptigi tahmin aklinizdaki sayidan buyukse    -
+Programimizin yaptigi tahmin aklinizdaki sayidan kucukse    + 
+Programimizin yaptigi tahmin aklinizdaki sayi ise           D 
+tusuna basiniz.
+""")
 
-Hazirsaniz ENTER a basiniz ! (Cikmak icin Q ya basiniz ! ) : """)
+baslama=input("Hazirsaniz H tusuna basin ve heyecan baslasin. Oyundan cikmak istiyorsaniz Q tusuna basin, severek ayrilalim : ")
 
-print("\n\n")
+if baslama == "Q":
+    print("Oyunda Cikiliyor...Gule Gule")
+    quit()
 
-
-while True:
-
-    if tahmin=="q":
-        break
-
-    if tahmin=="":
-
-        print("Tuttugunuz Sayi : ")
-
-        pc_tahmin = random.choice(sayi_listesi)
-
-        print(pc_tahmin)
-
-
-        feedback = input("""
-Tuttugunuz sayi ile tahmin edilen sayi dogru ise "dogru" yaziniz !        
-
-Eger tuttugunuz sayi tahmin edilen sayidan kucukse "-" ve buyukse "+" 
-
-isareti koyunuz ve ENTER a basiniz! = """)
-
-
-        if feedback=="dogru":
-            print("Nasilda Bildik ! ")
+if baslama == "H":
+    altsinir=0
+    ustsinir=101
+    import random
+    tahmin=random.randint(altsinir, ustsinir)
+    print("1. tahmin : ", tahmin)
+    deneme=1
+    while True:
+        deneme+=1
+        degerlendirme=input("Yukaridaki yonergeye gore degerlendirmenizi yapiniz !  ")
+        if degerlendirme == "-":
+            ustsinir=tahmin
+            tahmin=int((ustsinir+altsinir)/2)
+            print(deneme,".", "tahmin :", tahmin)
+        elif degerlendirme == "+":
+            altsinir=tahmin
+            tahmin=int((ustsinir+altsinir)/2)
+            print(deneme,".", "tahmin :", tahmin)
+        elif degerlendirme == "D":
+            print("Tebrikler.{}. denemede bildiniz.".format(deneme))
             break
-
-
-        if feedback=="-":
-            print("Yeni Tahmin : ")
-            a = random.randrange(0,pc_tahmin)
-            print(a)
-
-
-        if feedback=="+":
-            print("Yeni Tahmin : ")
-            b = random.randrange(pc_tahmin,101)
-            print(b)
-
-
-
-
-
